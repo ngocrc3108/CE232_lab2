@@ -141,7 +141,6 @@ static void i2c_test_task() {
 }
 
 void app_main(void) {
-    i2c_test_task();
     ESP_ERROR_CHECK(i2c_master_init());
     ssd1306_init();
 }
