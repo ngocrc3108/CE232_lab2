@@ -3,6 +3,7 @@
 #include "driver/i2c.h"
 #include "sdkconfig.h"
 #include "ssd1306.h"
+#include "uit_logo.h"
 
 #define I2C_MASTER_SCL_IO CONFIG_I2C_MASTER_SCL               /*!< gpio number for I2C master clock */
 #define I2C_MASTER_SDA_IO CONFIG_I2C_MASTER_SDA               /*!< gpio number for I2C master data  */
@@ -35,5 +36,5 @@ static esp_err_t i2c_master_init(void) {
 void app_main(void) {
     ESP_ERROR_CHECK(i2c_master_init());
     ssd1306_init();
-    task_ssd1306_display_text("21522381\n21522390\n21522768");
+    draw_uit_logo();
 }
