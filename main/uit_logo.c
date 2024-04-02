@@ -69,7 +69,6 @@ uint8_t uit_logo[UIT_LOGO_LENGTH] = {
 
 void draw_uit_logo() {
 	i2c_cmd_handle_t cmd;
-
 	uint8_t cur_page = 0;
 
     // go to page 0
@@ -78,8 +77,11 @@ void draw_uit_logo() {
 	i2c_master_write_byte(cmd, (OLED_I2C_ADDRESS << 1) | I2C_MASTER_WRITE, true);
 
 	i2c_master_write_byte(cmd, OLED_CONTROL_BYTE_CMD_STREAM, true);
-	i2c_master_write_byte(cmd, 0x00, true); // reset column - choose column --> 0
-	i2c_master_write_byte(cmd, 0x10, true); // reset line - choose line --> 0
+
+	// reset colum to 0
+	i2c_master_write_byte(cmd, 0x00, true);
+	i2c_master_write_byte(cmd, 0x10, true);
+
 	i2c_master_write_byte(cmd, 0xB0 | cur_page, true); // reset page
 
 	i2c_master_stop(cmd);
