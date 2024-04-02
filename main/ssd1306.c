@@ -44,8 +44,11 @@ void task_ssd1306_display_text(const void *arg_text) {
 	i2c_master_write_byte(cmd, (OLED_I2C_ADDRESS << 1) | I2C_MASTER_WRITE, true);
 
 	i2c_master_write_byte(cmd, OLED_CONTROL_BYTE_CMD_STREAM, true);
-	i2c_master_write_byte(cmd, 0x00, true); // reset column - choose column --> 0
-	i2c_master_write_byte(cmd, 0x10, true); // reset line - choose line --> 0
+
+	// reset column to 0
+	i2c_master_write_byte(cmd, 0x00, true);
+	i2c_master_write_byte(cmd, 0x10, true);
+
 	i2c_master_write_byte(cmd, 0xB0 | cur_page, true); // reset page
 
 	i2c_master_stop(cmd);
